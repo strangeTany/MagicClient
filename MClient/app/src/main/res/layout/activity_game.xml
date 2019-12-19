@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <LinearLayout
+        android:id="@+id/endLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorBackgroundFloating"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/stat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/won_games"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/stat1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/lost_games"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/won"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/lost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/quest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/play_again"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/replay"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/yes" />
+
+            <Button
+                android:id="@+id/back"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/no" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            tools:layout_editor_absoluteX="200dp"
+            tools:layout_editor_absoluteY="273dp" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="@string/finding_opponent"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/gameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <Button
+            android:id="@+id/castSpell"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/button"
+            android:enabled="false"
+            android:text="@string/cast_spell"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/timer"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="11dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:foregroundGravity="top"
+            android:max="30000"
+            android:progress="30000"
+            android:progressTint="@color/progressBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timer" />
+
+        <TextView
+            android:id="@+id/opponentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timer" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/castSpell"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/first"
+                android:layout_width="49dp"
+                android:layout_height="69dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="569dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/second"
+                android:layout_width="49dp"
+                android:layout_height="69dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                tools:layout_editor_absoluteX="181dp"
+                tools:layout_editor_absoluteY="569dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/third"
+                android:layout_width="49dp"
+                android:layout_height="69dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                tools:layout_editor_absoluteX="354dp"
+                tools:layout_editor_absoluteY="569dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/forth"
+                android:layout_width="49dp"
+                android:layout_height="69dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                tools:layout_editor_absoluteX="258dp"
+                tools:layout_editor_absoluteY="569dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/fith"
+                android:layout_width="49dp"
+                android:layout_height="69dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                tools:layout_editor_absoluteY="569dp"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/textOpponentHP"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="100"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/opponentHP"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/opponentHP"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/opponentHP"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/opponentHP"-->
+        <!--tools:ignore="HardcodedText" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/textOpponentProtect"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="0"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/oppenentProtect"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/oppenentProtect"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/oppenentProtect"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/oppenentProtect"-->
+        <!--tools:ignore="HardcodedText" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/textUserHP"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="0"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/userHP"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/userHP"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/userHP"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/userHP"-->
+        <!--tools:ignore="HardcodedText" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/textUserProtect"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="0"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/userProtect"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/userProtect"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/userProtect"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/userProtect"-->
+        <!--tools:ignore="HardcodedText" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/spellOnUser"-->
+        <!--android:layout_width="75dp"-->
+        <!--android:layout_height="75dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:src="@drawable/spell"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/userProtect"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/userHP"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/userName" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/spellOnOpponent"-->
+        <!--android:layout_width="75dp"-->
+        <!--android:layout_height="75dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:src="@drawable/spell"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/oppenentProtect"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/opponentHP"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/opponentName" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/textSpellOnOp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:textSize="18sp"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/spellOnOpponent"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/spellOnOpponent"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/spellOnOpponent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/spellOnOpponent" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/textSpellOnUser"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:textSize="18sp"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/spellOnUser"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/spellOnUser"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/spellOnUser"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/spellOnUser" />-->
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/announcementLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dialogBackground"
+        android:gravity="center_horizontal|center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/announcement"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:textSize="30sp"
+            android:visibility="visible"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

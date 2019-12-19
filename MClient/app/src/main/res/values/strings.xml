@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MTest</string>
+    <string name="cast_spell">cast spell</string>
+    <string name="restrict"> cards are losing their magic effect</string>
+    <string name="red">red</string>
+    <string name="yellow">yellow</string>
+    <string name="green">green</string>
+    <string name="violet">violet</string>
+    <string name="blue">blue</string>
+    <string name="start_new_game">Start new game</string>
+    <string name="finding_opponent">Finding opponent</string>
+    <string name="generating_cards">Generating cards</string>
+    <string name="room_error">Something went wrong, please try again</string>
+    <string name="permission_error">You need to give access to camera</string>
+    <string name="no">No</string>
+    <string name="play_again">Play again?</string>
+    <string name="lost_games">Lost games</string>
+    <string name="won_games">Won games</string>
+    <string name="you_won">You won</string>
+    <string name="you_lost">You lost</string>
+    <string name="yes">Yes</string>
+    <string name="fighting">Fighting is going</string>
+    <string name="must_use">"You must use straight "</string>
+    <string name="protecting_cards">" protecting cards"</string>
+    <string name="cards">" cards"</string>
+    <string name="must_use_1">"You must use "</string>
+    <string name="card_after">" card after "</string>
+</resources>

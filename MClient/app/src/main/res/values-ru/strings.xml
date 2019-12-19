@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MTest</string>
+    <string name="cast_spell">Использовать заклинание</string>
+    <string name="red">красные</string>
+    <string name="yellow">желтые</string>
+    <string name="green">зеленые</string>
+    <string name="violet">Фиолетовые</string>
+    <string name="blue">синие</string>
+    <string name="start_new_game">Начать новую игру</string>
+    <string name="finding_opponent">Поиск соперника</string>
+    <string name="room_error">Что-то пошло не так, попробуйте снова</string>
+    <string name="generating_cards">Подготовка карт</string>
+    <string name="permission_error">Для игры требуется разрешение на использрвание камеры</string>
+    <string name="restrict">" карты теряют магический эффект"</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="play_again">Сыграть еще раз?</string>
+    <string name="lost_games">Проиграно игр</string>
+    <string name="won_games">Выиграно игр</string>
+    <string name="you_won">Вы выиграли</string>
+    <string name="you_lost">Вы проиграли</string>
+    <string name="fighting">Идет сражение</string>
+    <string name="must_use">"Вы должны использовать ровно "</string>
+    <string name="protecting_cards">" защитные карты"</string>
+    <string name="cards">" карты"</string>
+    <string name="must_use_1">"Вы должны использовать "</string>
+    <string name="card_after">" карту после "</string>
+</resources>
