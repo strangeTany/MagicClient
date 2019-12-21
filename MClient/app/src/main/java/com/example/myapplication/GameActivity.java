@@ -91,7 +91,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
         loading = findViewById(R.id.loading);
         restrictLayout = findViewById(R.id.announcementLayout);
         endLayout = findViewById(R.id.endLayout);
-
+        //сообщения при загрузке
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -106,7 +106,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             sendComboToServer();
             timer.cancel();
         });
-
+        //подключение юзера
         String url = "http://192.168.43.63:3000";
         client = new Client(url, new Client.Listener() {
             @Override
@@ -139,7 +139,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
         Log.e("room", "room");
         endLayout.setVisibility(View.GONE);
         room = client.join("battle", options);
-
+        //подключение к комнате
         room.addListener(new Room.Listener() {
             @Override
             protected void onLeave() {
@@ -157,7 +157,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             @Override
             protected void onMessage(Object message) {
                 runOnUiThread(() -> {
-
+                    //установка ограничений
                     TextView announcement = findViewById(R.id.announcement);
 
                     try {
@@ -183,6 +183,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
                                         announcement.setText(getString(R.string.must_use_1) + colors[restriction.getInt("secondColor")] + getString(R.string.card_after) + colors[restriction.getInt(("firstColor"))] + getString(R.string.cards));
                                         break;
                                 }
+                                //это все эти слои с обЪявлениями приходят и уходят
                                 restrictLayout.setVisibility(View.VISIBLE);
                                 Handler handlerRestriction = new Handler();
                                 handlerRestriction.postDelayed(() -> {
@@ -197,6 +198,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
                                 break;
 
                             case ("end"):
+                                //конец игры приходит id победителя
                                 Log.e("end", obj.toString());
                                 loading.setVisibility(View.GONE);
                                 String winnerId = obj.getString("winner");
@@ -234,6 +236,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
 
             @Override
             protected void onJoin() {
+                //готовность к игре
                 LinkedHashMap<String, Object> data = new LinkedHashMap<>();
                 data.put("message", "ready");
                 room.send(data);
@@ -243,6 +246,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
     }
 
     private void setPlayers(JSONObject obj) throws JSONException {
+        //красиво делаем id игроков
         String playersString = obj.getString("players");
         JSONArray players = new JSONArray(playersString);
         JSONObject first = (JSONObject) players.get(0);
@@ -260,6 +264,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
         }
 
     }
+    //что это было я беспонятия
 
 //    private void changeState(int to, int fromHp, int fromProtect, int toHp, int toProtect, JSONObject spell) throws JSONException {
 //        TextView fromHpView;
@@ -333,7 +338,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             message.arg1 = R.string.generating_cards;
             handler.sendMessage(message);
 
-
+            //получаем карты юзера
             List<UserCard> cards = UserCard.listAll(UserCard.class);
 
             List<String> targetImages = new ArrayList<>();
@@ -341,7 +346,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             List<String> targetNames = new ArrayList<>();
 
             for (UserCard card : cards) {
-
+                //делаем из карт маркеры
                 Boolean cardStatus = card.getStatus();
                 String cardName = card.getName();
                 String targetFile = cardName + ".jpg";
@@ -402,6 +407,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
 
     private void sendComboToServer() {
         Log.e("gg", "tut");
+        //правила рестрикшенов не помню но именно они тут проверяются
         try {
             if (restriction.getInt("index") == 2 && currentCombo.size() != 0) {
                 UserCard lastCard = UserCard.find(UserCard.class, "name=?", currentCombo.get(currentCombo.size() - 1)).get(0);
@@ -428,6 +434,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
         data.put("spell", currentCombo);
         room.send(data);
         currentCombo = new ArrayList<>();
+        //это кажется для отображения выбранных карт
         ImageView[] cards = new ImageView[]{findViewById(R.id.first), findViewById(R.id.second), findViewById(R.id.third), findViewById(R.id.forth), findViewById(R.id.fith)};
         for (ImageView card : cards) {
             card.setImageResource(android.R.color.transparent);
@@ -455,6 +462,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
 //        return modelNode;
 //    }
 
+    //создание маркеров
     private List<ARImageTrackable> createTargets(List<String> targetFiles, List<String> targetNames) {
         List<ARImageTrackable> trackables = new ArrayList<>();
 
@@ -466,7 +474,8 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
         }
         return trackables;
     }
-
+    
+    //а это кажется 3Д модельки котрых нет
     private void addModelsToTrackables(List<ARImageTrackable> trackables, List<ARModelNode> models) {
 
         for (int i = 0; i < trackables.size(); i++) {
@@ -477,6 +486,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
 
     }
 
+    //прикрепление картинок к маркерам
     private void addImageToTrackables(List<ARImageTrackable> trackables) throws IllegalStateException {
         String[] effects = new String[]{"fire", "air", "flower", "water"};
         int count = 0;
@@ -497,7 +507,8 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
         }
 
     }
-
+    
+    //это кудановское чтобы оно работало в принципе
     private void addTrackablesToManager(List<ARImageTrackable> trackables) {
         ARImageTracker tracker = ARImageTracker.getInstance();
         tracker.initialise();
@@ -505,14 +516,15 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             tracker.addTrackable(trackable);
         }
     }
-
+ 
+    //тут адовая дичь с тем, что когда карта детектится она проверяется на все ограничения и добавляется в комбо
     @Override
     public void didDetect(ARImageTrackable arImageTrackable) {
         String cardStatus = arImageTrackable.getName().split("_")[0];
         String cardName = arImageTrackable.getName().split("_")[1];
         int cardColor = Integer.parseInt(arImageTrackable.getName().split("_")[2]);
         arImageTrackable.getWorld().getChildren().get(0).setVisible(false);
-
+        
         if (isGameStarted) {
             try {
                 if (!doneRestriction) {
@@ -581,7 +593,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             }
         }
     }
-
+    //подгрузка изображений из ассетов
     private void addImage(String name) {
         ImageView[] cards = new ImageView[]{findViewById(R.id.first), findViewById(R.id.second), findViewById(R.id.third), findViewById(R.id.forth), findViewById(R.id.fith)};
         try {
@@ -597,7 +609,7 @@ public class GameActivity extends ARActivity implements ARImageTrackableListener
             e.printStackTrace();
         }
     }
-
+    //очередная проверка на рестрикшены(точнее функция которая юзается при проверке)
     private void checkRestriction(ARImageTrackable arImageTrackable, String cardName, boolean condition) throws JSONException {
         if (restriction.getInt("count") - rightCards == 5 - currentCombo.size()) {
             if (condition &&
